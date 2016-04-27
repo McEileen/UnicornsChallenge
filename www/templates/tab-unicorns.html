@@ -1,7 +1,7 @@
 <ion-view view-title="Unicorns">
   <ion-content>
     <ion-list>
-      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="unicorn in UnicornsStuff" type="item-text-wrap" href="#/tab/unicorns/{{unicorn.id}}">
+      <ion-item class="item-remove-animate item-avatar item-icon-right" collection-repeat="unicorn in UnicornsStuff" type="item-text-wrap" href="#/tab/unicorns/{{unicorn.id}}">
         <img ng-src= "{{unicorn.images.fixed_height_downsampled.url}}" />
       </ion-item>
     </ion-list>
