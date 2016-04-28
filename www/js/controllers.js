@@ -2,11 +2,34 @@ angular.module('starter.controllers', [])
 
 .controller('DashCtrl', function($scope) {})
 
-.controller('UnicornsCtrl', ['$scope', 'Unicorns', function($scope, Unicorns) {
-  Unicorns.success(function(data) {
-    $scope.UnicornsStuff = data["data"];
-  })
-}])
+.controller('UnicornsCtrl', function($scope, $timeout, UnicornService) {
+    $scope.unicorns = [];
+
+    UnicornService.GetUnicorns().then(function(unicorns){
+      $scope.unicorns = unicorns;
+    });
+
+    $scope.loadMore = function(){
+      UnicornService.GetMoreUnicorns().then(function(unicorns) {
+          $scope.unicorns = $scope.unicorns.concat(unicorns);
+
+          $scope.$broadcast('scroll.infiniteScrollComplete');
+      });
+    };
+});
+
+// .controller('UnicornsCtrl', ['$scope', 'Unicorns', function($scope, Unicorns) {
+//   Unicorns.success(function(data) {
+//     $scope.UnicornsStuff = data["data"];
+//   })
+// }])
+
+
+// .controller('UnicornsCtrl', ['$scope', 'Unicorns', function($scope, Unicorns) {
+//   Unicorns.success(function(data) {
+//     $scope.UnicornsStuff = data["data"];
+//   })
+// }])
 
 
 
