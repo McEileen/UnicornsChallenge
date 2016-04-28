@@ -3,7 +3,6 @@ angular.module('starter.controllers', [])
 .controller('DashCtrl', function($scope) {})
 
 .controller('UnicornsCtrl', function($scope, $timeout, UnicornService) {
-    $scope.unicorns = [];
 
     UnicornService.GetUnicorns().then(function(unicorns){
       $scope.unicorns = unicorns;
