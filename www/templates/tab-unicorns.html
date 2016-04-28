@@ -1,16 +1,10 @@
 <ion-view view-title="Unicorns">
   <ion-content>
-    <ion-list>
-      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="unicorn in unicorns" type="item-text-wrap" href="#/tab/unicorns/{{unicorn.id}}">
-        <img ng-src="{{unicorn.face}}">
-        <h2>{{unicorn.name}}</h2>
-        <p>{{unicorn.lastText}}</p>
-        <i class="icon ion-chevron-right icon-accessory"></i>
 
-        <ion-option-button class="button-assertive" ng-click="remove(unicorn)">
-          Delete
-        </ion-option-button>
-      </ion-item>
-    </ion-list>
+    <img collection-repeat="unicorn in unicorns"
+    item-width="33%" item-height="200px"
+    ng-src= "{{unicorn.images.fixed_height.url}}">
+
+    <ion-infinite-scroll on-infinite="loadMore()" distance="5%"></ion-infinite-scroll>
   </ion-content>
 </ion-view>
