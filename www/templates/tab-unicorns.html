@@ -3,7 +3,7 @@
 
     <img collection-repeat="unicorn in unicorns"
     item-width="33%" item-height="200px"
-    ng-src= "{{unicorn.images.fixed_height.url}}">
+    ng-src= "{{unicorn.images.fixed_height_downsampled.url}}" ng-click="showImages($index)">
 
     <ion-infinite-scroll on-infinite="loadMore()" distance="5%"></ion-infinite-scroll>
   </ion-content>

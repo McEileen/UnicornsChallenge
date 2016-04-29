@@ -2,7 +2,7 @@ angular.module('starter.controllers', [])
 
 .controller('DashCtrl', function($scope) {})
 
-.controller('UnicornsCtrl', function($scope, $timeout, UnicornService) {
+.controller('UnicornsCtrl', function($scope, $timeout, $ionicModal, UnicornService) {
 
     UnicornService.GetUnicorns().then(function(unicorns){
       $scope.unicorns = unicorns;
@@ -15,6 +15,27 @@ angular.module('starter.controllers', [])
           $scope.$broadcast('scroll.infiniteScrollComplete');
       });
     };
+
+    $scope.showImages = function(index) {
+      $scope.activeSlide = index;
+      $scope.showModal('templates/image-popover.html');
+    };
+
+    $scope.showModal = function(templateUrl) {
+      $ionicModal.fromTemplateUrl(templateUrl, {
+        scope: $scope,
+        animation: 'slide-in-up'
+      }).then(function(modal) {
+        $scope.modal = modal;
+        $scope.modal.show();
+      });
+    }
+
+    $scope.closeModal = function() {
+      $scope.modal.hide();
+      $scope.modal.remove()
+    };
+
 });
 
 // .controller('UnicornsCtrl', ['$scope', 'Unicorns', function($scope, Unicorns) {
