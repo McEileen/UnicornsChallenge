@@ -1,6 +1,14 @@
 angular.module('starter.controllers', [])
 
-.controller('SearchCtrl', function($scope) {})
+.controller('SearchCtrl', function($scope, $stateParams) {
+
+  $scope.formdata = {gifsearch : ""};
+
+  $scope.onsubmit = function () {
+    alert($scope.formdata.gifsearch);
+  }
+
+})
 
 .controller('UnicornsCtrl', function($scope, $timeout, $ionicModal, UnicornService) {
 
