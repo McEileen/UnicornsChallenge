@@ -50,6 +50,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     }
   })
 
+  .state('tab.results', {
+    url: '/results',
+    views: {
+      'tab-results': {
+        templateUrl: 'templates/tab-results.html',
+        controller: 'ResultsCtrl'
+      }
+    }
+  })
+
   .state('tab.unicorns', {
       url: '/unicorns',
       views: {
