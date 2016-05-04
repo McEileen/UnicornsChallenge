@@ -19,3 +19,9 @@ angular.module('starter.services', [])
           }
   }
 })
+
+.factory('SearchService', function($rootScope) {
+  query = {};
+  // query.entry = '';
+  return query;
+});
