@@ -1,23 +1,24 @@
 angular.module('starter.controllers', [])
 
-.controller('SearchCtrl', function($scope, $state, SearchService) {
+.controller('SearchCtrl', function($scope, $state, $stateParams, SearchService) {
 
-  $scope.input = query;
 
-  $scope.onsubmit = function () {
-    console.log(query);
-    $state.go('tab.results');
+  $scope.saveText = function(input){
+    console.log(input);
+    $state.go('tab.results', {query: input.query});
   }
-
 })
 
 .controller('ResultsCtrl', function($scope, $state, $stateParams, SearchService) {
   $scope.input = query;
+  $scope.save = {};
+
+  alert("You searched for: " + $stateParams.query);
+
+  $ionicLoading.show();
+  var query = $stateParams.query;
 
 })
-
-
-
 
 
 .controller('UnicornsCtrl', function($scope, $timeout, $ionicModal, UnicornService) {
