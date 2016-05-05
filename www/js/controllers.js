@@ -13,9 +13,6 @@ angular.module('starter.controllers', [])
   $scope.input = query;
   $scope.save = {};
 
-  alert("You searched for: " + $stateParams.query);
-
-  $ionicLoading.show();
   var query = $stateParams.query;
 
 })
