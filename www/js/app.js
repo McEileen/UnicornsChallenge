@@ -57,9 +57,6 @@ angular.module('starter', ['ionic', 'ui.router', 'starter.controllers', 'starter
       'tab-results': {
         templateUrl: 'templates/tab-results.html',
         controller: 'ResultsCtrl',
-        params: {
-          query: null
-        }
       }
     }
   })
