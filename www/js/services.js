@@ -20,9 +20,28 @@ angular.module('starter.services', [])
   }
 })
 
+
+.factory('mySharedService', function($rootScope){
+  var sharedService = {};
+
+  sharedService.message = '';
+
+  sharedService.prepForBroadcast = function(msg) {
+    this.message = msg;
+    this.broadcastItem();
+  };
+
+  sharedService.broadcastItem = function() {
+    $rootScope.$broadcast('handleBroadcast');
+  };
+
+  return sharedService;
+})
+
 .factory('SearchService', function() {
   var API_URL = "http://api.giphy.com/v1/gifs/search?q=";
   var API_URL_CALL_FINISH = "&api_key=dc6zaTOxFJmzC&fmt=json&limit=100";
+
 
   return {
           GetResults: function(){

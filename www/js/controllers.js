@@ -1,19 +1,24 @@
 angular.module('starter.controllers', [])
 
-.controller('SearchCtrl', function($scope, $state, $stateParams, SearchService) {
+.controller('SearchCtrl', function($scope, $state, $stateParams,mySharedService, SearchService) {
 
-
-  $scope.saveText = function(input){
-    console.log(input);
-    $state.go('tab.results', {query: input.query});
+  $scope.handleClick = function(msg){
+    console.log("in SearchCtrl handleClick, below msg");
+    console.log(msg);
+    mySharedService.prepForBroadcast(msg);
+    $state.go('tab.results');
   }
 })
 
-.controller('ResultsCtrl', function($scope, $state, $stateParams, SearchService) {
-  $scope.input = query;
-  $scope.save = {};
+.controller('ResultsCtrl', function($scope, $state, $stateParams, mySharedService, SearchService) {
 
-  var query = $stateParams.query;
+    $scope.$on('handleBroadcast', function() {
+      $scope.message = mySharedService.message;
+      console.log("in handleBroadcast, $scope.message below");
+      console.log($scope.message);
+      console.log("in handleBroadcast, mySharedService.message below");
+      console.log(mySharedService.message);
+    })
 
 })
 
