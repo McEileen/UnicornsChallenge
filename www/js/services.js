@@ -20,8 +20,41 @@ angular.module('starter.services', [])
   }
 })
 
-.factory('SearchService', function($rootScope) {
-  query = {};
-  // query.entry = '';
-  return query;
+
+.factory('mySharedService', function($rootScope){
+  var sharedService = {};
+
+  sharedService.message = '';
+
+  sharedService.prepForBroadcast = function(msg) {
+    this.message = msg;
+    this.broadcastItem();
+  };
+
+  sharedService.broadcastItem = function() {
+    $rootScope.$broadcast('handleBroadcast');
+  };
+
+  return sharedService;
+})
+
+.factory('SearchService', function() {
+  var API_URL = "http://api.giphy.com/v1/gifs/search?q=";
+  var API_URL_CALL_FINISH = "&api_key=dc6zaTOxFJmzC&fmt=json&limit=100";
+
+
+  return {
+          GetResults: function(){
+                    return $http.get(API_URL + query +API_URL_CALL_FINISH).then(function(response){
+                    results = response.data.data;
+                    return results;
+                    });
+          },
+          GetMoreResults: function(){
+                    return $http.get(API_URL + query + API_URL_CALL_FINISH).then(function(response){
+                      results = response.data.results;
+                      return results;
+                    });
+          }
+  }
 });

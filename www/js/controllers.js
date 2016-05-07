@@ -1,23 +1,26 @@
 angular.module('starter.controllers', [])
 
-.controller('SearchCtrl', function($scope, $state, SearchService) {
+.controller('SearchCtrl', function($scope, $state, $stateParams,mySharedService, SearchService) {
 
-  $scope.input = query;
-
-  $scope.onsubmit = function () {
-    console.log(query);
+  $scope.handleClick = function(msg){
+    console.log("in SearchCtrl handleClick, below msg");
+    console.log(msg);
+    mySharedService.prepForBroadcast(msg);
     $state.go('tab.results');
   }
-
 })
 
-.controller('ResultsCtrl', function($scope, $state, $stateParams, SearchService) {
-  $scope.input = query;
+.controller('ResultsCtrl', function($scope, $state, $stateParams, mySharedService, SearchService) {
+
+    $scope.$on('handleBroadcast', function() {
+      $scope.message = mySharedService.message;
+      console.log("in handleBroadcast, $scope.message below");
+      console.log($scope.message);
+      console.log("in handleBroadcast, mySharedService.message below");
+      console.log(mySharedService.message);
+    })
 
 })
-
-
-
 
 
 .controller('UnicornsCtrl', function($scope, $timeout, $ionicModal, UnicornService) {

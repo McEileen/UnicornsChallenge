@@ -40,15 +40,6 @@ angular.module('starter', ['ionic', 'ui.router', 'starter.controllers', 'starter
 
   // Each tab has its own nav history stack:
 
-  .state('tab.results', {
-    url: '/results',
-    views: {
-      'tab-results': {
-        templateUrl: 'templates/tab-results.html',
-        controller: 'ResultsCtrl'
-      }
-    }
-  })
 
   .state('tab.search', {
     url: '/search',
@@ -60,6 +51,15 @@ angular.module('starter', ['ionic', 'ui.router', 'starter.controllers', 'starter
     }
   })
 
+  .state('tab.results', {
+    url: '/results',
+    views: {
+      'tab-results': {
+        templateUrl: 'templates/tab-results.html',
+        controller: 'ResultsCtrl',
+      }
+    }
+  })
 
   .state('tab.unicorns', {
       url: '/unicorns',
@@ -69,17 +69,7 @@ angular.module('starter', ['ionic', 'ui.router', 'starter.controllers', 'starter
           controller: 'UnicornsCtrl'
         }
       }
-    })
-
-  .state('tab.account', {
-    url: '/account',
-    views: {
-      'tab-account': {
-        templateUrl: 'templates/tab-account.html',
-        controller: 'AccountCtrl'
-      }
-    }
-  });
+    });
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/unicorns');

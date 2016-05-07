@@ -2,18 +2,19 @@
   <ion-content>
     <h2>Search for your favorite gifs</h2>
 
-    <form ng-submit="onsubmit(query)">
+    <form ng-submit="onsubmit(message)">
 
       <div class="list">
 
         <label class="item item-input item-stacked-label">
         <span class="input-label">What type of Gif do you want to see?</span>
-        <input type="text" placeholder="ex. cats" ng-model="input.query">
+        <input type="text" placeholder="ex. cats" ng-model="message">
         </label>
 
       </div>
 
-      <input type="submit" class="button button-calm button button-block">
+
+      <input type="submit" class="button button-calm button button-block" ng-click="handleClick(message)" value = "Submit">
 
     </form>
 
