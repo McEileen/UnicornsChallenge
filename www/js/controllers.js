@@ -1,26 +1,44 @@
 angular.module('starter.controllers', [])
 
-.controller('SearchCtrl', function($scope, $state, $stateParams,mySharedService, SearchService) {
+.controller('SearchCtrl', function($scope, SearchService) {
+  $scope.master = {};
 
-  $scope.handleClick = function(msg){
-    console.log("in SearchCtrl handleClick, below msg");
-    console.log(msg);
-    mySharedService.prepForBroadcast(msg);
-    $state.go('tab.results');
-  }
+  $scope.update = function(query) {
+    $scope.master = angular.copy(query);
+    console.log("below we can see $scope.master");
+    console.log($scope.master);
+    var queryForService = $scope.master;
+    console.log("queryForService below");
+    console.log(queryForService);
+    console.log("query below");
+    console.log(query);
+
+    SearchService.GetResults().then(function(results){
+      $scope.results = results;
+      $scope.query = query;
+      console.log("below you can see results in SearchService.GetResults");
+      console.log(results);
+      console.log("below you can see query in SearchService.GetResults");
+      console.log(query);
+    });
+
+  };
+
+
+
 })
 
-.controller('ResultsCtrl', function($scope, $state, $stateParams, mySharedService, SearchService) {
+// .controller('ResultsCtrl', function($scope, $state, $stateParams, mySharedService, SearchService) {
 
-    $scope.$on('handleBroadcast', function() {
-      $scope.message = mySharedService.message;
-      console.log("in handleBroadcast, $scope.message below");
-      console.log($scope.message);
-      console.log("in handleBroadcast, mySharedService.message below");
-      console.log(mySharedService.message);
-    })
+//     $scope.$on('handleBroadcast', function() {
+//       $scope.message = mySharedService.message;
+//       console.log("in handleBroadcast, $scope.message below");
+//       console.log($scope.message);
+//       console.log("in handleBroadcast, mySharedService.message below");
+//       console.log(mySharedService.message);
+//     })
 
-})
+// })
 
 
 .controller('UnicornsCtrl', function($scope, $timeout, $ionicModal, UnicornService) {

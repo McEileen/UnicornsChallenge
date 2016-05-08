@@ -20,6 +20,32 @@ angular.module('starter.services', [])
   }
 })
 
+.factory('SearchService', function($http) {
+  var API_URL = "http://api.giphy.com/v1/gifs/search?q=";
+  var API_URL_CALL_FINISH = "&api_key=dc6zaTOxFJmzC&fmt=json&limit=100";
+  var query = query;
+  console.log(query);
+  var COMPLETE_API_CALL = API_URL + query + API_URL_CALL_FINISH;
+  var results = [];
+
+
+  return {
+          GetResults: function(){
+                    return $http.get(COMPLETE_API_CALL).then(function(response){
+                    results = response.data.data;
+                    console.log("trying to see the call below!!!!!");
+                    console.log(COMPLETE_API_CALL);
+                    return results;
+                    });
+          },
+          GetMoreResults: function(){
+                    return $http.get(COMPLETE_API_CALL).then(function(response){
+                      results = response.data.results;
+                      return results;
+                    });
+          }
+  }
+})
 
 .factory('mySharedService', function($rootScope){
   var sharedService = {};
@@ -36,25 +62,4 @@ angular.module('starter.services', [])
   };
 
   return sharedService;
-})
-
-.factory('SearchService', function() {
-  var API_URL = "http://api.giphy.com/v1/gifs/search?q=";
-  var API_URL_CALL_FINISH = "&api_key=dc6zaTOxFJmzC&fmt=json&limit=100";
-
-
-  return {
-          GetResults: function(){
-                    return $http.get(API_URL + query +API_URL_CALL_FINISH).then(function(response){
-                    results = response.data.data;
-                    return results;
-                    });
-          },
-          GetMoreResults: function(){
-                    return $http.get(API_URL + query + API_URL_CALL_FINISH).then(function(response){
-                      results = response.data.results;
-                      return results;
-                    });
-          }
-  }
 });
