@@ -1,5 +1,5 @@
 <div class="modal image-modal transparent" ng-click="closeModal()">
-    <ion-slide-box on-slide-changed="slideChanged(index)" show-pager="true" active-slide="activeSlide">
+    <ion-slide-box on-slide-changed="slideChanged(index)" show-pager="false" active-slide="activeSlide">
         <ion-slide ng-repeat="unicorn in unicorns">
             <img ng-src="{{unicorn.images.original.url}}" class="fullscreen-image"/>
         </ion-slide>
