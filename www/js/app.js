@@ -51,16 +51,6 @@ angular.module('starter', ['ionic', 'ui.router', 'starter.controllers', 'starter
     }
   })
 
-  .state('tab.results', {
-    url: '/results',
-    views: {
-      'tab-results': {
-        templateUrl: 'templates/tab-results.html',
-        controller: 'ResultsCtrl',
-      }
-    }
-  })
-
   .state('tab.unicorns', {
       url: '/unicorns',
       views: {

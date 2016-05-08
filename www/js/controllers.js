@@ -1,24 +1,48 @@
 angular.module('starter.controllers', [])
 
-.controller('SearchCtrl', function($scope, $state, $stateParams,mySharedService, SearchService) {
+.controller('SearchCtrl', function($scope, $ionicModal, SearchService) {
+  $scope.master = {};
+  $scope.searchHasLoaded = false;
+  var results = [];
 
-  $scope.handleClick = function(msg){
-    console.log("in SearchCtrl handleClick, below msg");
-    console.log(msg);
-    mySharedService.prepForBroadcast(msg);
-    $state.go('tab.results');
+  $scope.update = function(query) {
+    $scope.master = angular.copy(query);
+
+
+    SearchService.GetResults(query).then(function(results){
+      $scope.results = results;
+      $scope.query = query;
+    });
+
+    $scope.searchHasLoaded = true;
+  };
+
+  $scope.loadMore = function(query){
+    SearchService.GetMoreResults(query).then(function(results) {
+        $scope.results = $scope.results.concat(results);
+        $scope.$broadcast('scroll.infiniteScrollComplete');
+    });
+  };
+
+  $scope.showImages = function(index) {
+    $scope.activeSlide = index;
+    $scope.showModal('templates/result-popover.html');
+  };
+
+  $scope.showModal = function(templateUrl) {
+    $ionicModal.fromTemplateUrl(templateUrl, {
+      scope: $scope,
+      animation: 'slide-in-up'
+    }).then(function(modal) {
+      $scope.modal = modal;
+      $scope.modal.show();
+    });
   }
-})
 
-.controller('ResultsCtrl', function($scope, $state, $stateParams, mySharedService, SearchService) {
-
-    $scope.$on('handleBroadcast', function() {
-      $scope.message = mySharedService.message;
-      console.log("in handleBroadcast, $scope.message below");
-      console.log($scope.message);
-      console.log("in handleBroadcast, mySharedService.message below");
-      console.log(mySharedService.message);
-    })
+  $scope.closeModal = function() {
+    $scope.modal.hide();
+    $scope.modal.remove()
+  };
 
 })
 
@@ -58,10 +82,3 @@ angular.module('starter.controllers', [])
     };
 
 });
-
-
-// .controller('AccountCtrl', function($scope) {
-//   $scope.settings = {
-//     enableFriends: true
-//   };
-// });

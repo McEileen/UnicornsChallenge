@@ -2,23 +2,18 @@
   <ion-content>
     <h2>Search for your favorite gifs</h2>
 
-    <form ng-submit="onsubmit(message)">
-
-      <div class="list">
-
-        <label class="item item-input item-stacked-label">
-        <span class="input-label">What type of Gif do you want to see?</span>
-        <input type="text" placeholder="ex. cats" ng-model="message">
-        </label>
-
-      </div>
-
-
-      <input type="submit" class="button button-calm button button-block" ng-click="handleClick(message)" value = "Submit">
-
+    <form novalidate class="simple-form">
+      What gifs would you like to see? <input type="text" ng-model="query" />
+      <br/>
+      <input type="submit" ng-click="update(query)" value = "Search Away!" />
     </form>
+  </pre>You are looking for a gif of {{query}}</pre>
 
+    <img collection-repeat="result in results"
+    item-width="33%" item-height="200px"
+    ng-src= "{{result.images.fixed_height_downsampled.url}}" ng-click="showImages($index)">
 
+    <ion-infinite-scroll ng-if="searchHasLoaded" on-infinite="loadMore(query)" distance="5%"></ion-infinite-scroll>
 
   </ion-content>
 </ion-view>
