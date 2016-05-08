@@ -13,13 +13,11 @@ angular.module('starter.controllers', [])
     console.log("query below");
     console.log(query);
 
-    SearchService.GetResults().then(function(results){
+    SearchService.GetResults(query).then(function(results){
       $scope.results = results;
       $scope.query = query;
-      console.log("below you can see results in SearchService.GetResults");
       console.log(results);
-      console.log("below you can see query in SearchService.GetResults");
-      console.log(query);
+
     });
 
   };
