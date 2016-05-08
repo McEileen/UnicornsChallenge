@@ -30,8 +30,6 @@ angular.module('starter.services', [])
           GetResults: function(query){
                     return $http.get(API_URL + query + API_URL_CALL_FINISH).then(function(response){
                     results = response.data.data;
-                    console.log("trying to see the call below!!!!!");
-                    console.log(API_URL + query + API_URL_CALL_FINISH);
                     return results;
                     });
           },
@@ -42,21 +40,4 @@ angular.module('starter.services', [])
                     });
           }
   }
-})
-
-.factory('mySharedService', function($rootScope){
-  var sharedService = {};
-
-  sharedService.message = '';
-
-  sharedService.prepForBroadcast = function(msg) {
-    this.message = msg;
-    this.broadcastItem();
-  };
-
-  sharedService.broadcastItem = function() {
-    $rootScope.$broadcast('handleBroadcast');
-  };
-
-  return sharedService;
 });
