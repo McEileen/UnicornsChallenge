@@ -2,14 +2,11 @@ angular.module('starter.controllers', [])
 
 .controller('SearchCtrl', function($scope, SearchService) {
   $scope.master = {};
+  $scope.searchHasLoaded = false;
+  var results = [];
 
   $scope.update = function(query) {
     $scope.master = angular.copy(query);
-    console.log("below we can see $scope.master");
-    console.log($scope.master);
-    var queryForService = $scope.master;
-    console.log("queryForService below");
-    console.log(queryForService);
     console.log("query below");
     console.log(query);
 
@@ -17,11 +14,21 @@ angular.module('starter.controllers', [])
       $scope.results = results;
       $scope.query = query;
       console.log(results);
-
     });
 
+    $scope.searchHasLoaded = true;
   };
 
+    $scope.loadMore = function(query){
+      console.log("inside loadMore, searchHasLoaded below");
+      console.log($scope.searchHasLoaded);
+      SearchService.GetMoreResults(query).then(function(results) {
+          console.log("QUERY INSIDE GETMORERESULTS");
+          console.log(query);
+          $scope.results = $scope.results.concat(results);
+          $scope.$broadcast('scroll.infiniteScrollComplete');
+      });
+    };
 
 
 })

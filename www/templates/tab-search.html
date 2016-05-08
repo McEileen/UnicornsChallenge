@@ -13,7 +13,7 @@
     item-width="33%" item-height="200px"
     ng-src= "{{result.images.fixed_height_downsampled.url}}" ng-click="showImages($index)">
 
-    <ion-infinite-scroll on-infinite="loadMore()" distance="5%"></ion-infinite-scroll>
+    <ion-infinite-scroll ng-if="searchHasLoaded" on-infinite="loadMore(query)" distance="5%"></ion-infinite-scroll>
 
   </ion-content>
 </ion-view>
