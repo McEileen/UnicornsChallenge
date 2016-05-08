@@ -22,7 +22,7 @@ angular.module('starter.services', [])
 
 .factory('SearchService', function($http) {
   var API_URL = "http://api.giphy.com/v1/gifs/search?q=";
-  var API_URL_CALL_FINISH = "&api_key=dc6zaTOxFJmzC&fmt=json&limit=12";
+  var API_URL_CALL_FINISH = "&api_key=dc6zaTOxFJmzC&fmt=json&limit=100";
   var results = [];
 
 
