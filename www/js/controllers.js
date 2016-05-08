@@ -26,18 +26,6 @@ angular.module('starter.controllers', [])
 
 })
 
-// .controller('ResultsCtrl', function($scope, $state, $stateParams, mySharedService, SearchService) {
-
-//     $scope.$on('handleBroadcast', function() {
-//       $scope.message = mySharedService.message;
-//       console.log("in handleBroadcast, $scope.message below");
-//       console.log($scope.message);
-//       console.log("in handleBroadcast, mySharedService.message below");
-//       console.log(mySharedService.message);
-//     })
-
-// })
-
 
 .controller('UnicornsCtrl', function($scope, $timeout, $ionicModal, UnicornService) {
 
@@ -74,10 +62,3 @@ angular.module('starter.controllers', [])
     };
 
 });
-
-
-// .controller('AccountCtrl', function($scope) {
-//   $scope.settings = {
-//     enableFriends: true
-//   };
-// });
